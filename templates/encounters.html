@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DnD Encounters</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/encounters.css">
+  </head>
+  <body>
+    <header id="header">
+      <h2>DnD Encounters</h2>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/encounters">Encounters</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section id="all-encounters-display">
+        <div id="build-encounter-button-wrap">
+          <a id="build-encounter-button" href="/encounter-builder">Build Encounter</a>
+        </div>
+        <section id="all-encounters"></section>
+      </section>
+
+      <section id="displayed-encounter"></section>
+    </main>
+  
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/js/encounters.js"></script>
+  </body>
+</html>

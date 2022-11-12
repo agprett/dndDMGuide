@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/encounter-builder.css">
+    <title>DND N Stuff</title>
+  </head>
+  <body>
+
+    <header id="header">
+      <h2>DnD Encounter Builder</h2>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/encounters">Encounters</a>
+      </nav>
+    </header>
+
+    <main>
+      
+      <section id="encounter-filter">
+        
+      </section>
+      
+      <section id="displayed">
+        <form name="search-monsters" id="search-monsters">
+          <input placeholder="Search name" id="search-monsters-input"/>
+          <button
+            type="submit"
+          >Search</button>
+        </form>
+
+        <section id="displayed-monsters">
+          <div class="monster">
+            <img class="monster-img"/>
+            <p>Monster Name</p>
+            <button
+              class="add-monster"
+            >Add</button>
+          </div>
+        </section>
+      </section>
+      
+      <section id="added-enemies">
+        <h2>Encounter:</h2>
+        <section id="added-display"></section>
+        <div id="encounter-builder-buttons-div">
+          <button class="encounter-builder-buttons" id="create-encounter-btn">Create Encounter</button>
+          <a class="encounter-builder-buttons" href="/encounters">Cancel Creation</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/js/encounters-builder.js"></script>
+  </body>
+</html>

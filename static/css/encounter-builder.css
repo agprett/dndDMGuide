@@ -1,0 +1,134 @@
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+#header {
+  height: 65px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: red;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 70px 0 15px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#encounter-filter {
+  height: 100%;
+  width: 20%;
+  background-color: red;
+}
+
+#displayed {
+  height: 100%;
+  width: 50%;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#search-monsters {
+  width: 90%;
+  height: 30px;
+  background-color: orange;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#search-monsters-input {
+  width: 50%;
+}
+
+#displayed-monsters {
+  width: 95%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  background-color: brown;
+}
+
+.monster {
+  min-height: 50px;
+  width: 95%;
+  margin: 0 0 5px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: pink;
+}
+
+#added-enemies {
+  height: 100%;
+  width: 25%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: purple;
+}
+
+#added-display {
+  width: 100%;
+  height: 85%;
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+
+.added-monster {
+  min-height: 30px;
+  width: 90%;
+  padding: 0px 7px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.added-monster-name {
+  width: 60%;
+}
+
+.added-monster-amount {
+  width: 20%;
+  text-align: right;
+}
+
+#encounter-builder-buttons-div {
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.encounter-builder-buttons {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  border: 2px solid black;
+  background-color: blue;
+}

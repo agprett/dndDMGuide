@@ -1,0 +1,37 @@
+[
+  {
+    "monsters": [
+      {
+        "name": "Acolyte",
+        "url": "/api/monsters/acolyte",
+        "amount": 4
+      },
+      {
+        "name": "Adult Blue Dragon",
+        "url": "/api/monsters/adult-blue-dragon",
+        "amount": 1
+      }
+    ],
+    "players": [
+      {
+        "name": "Aakaash",
+        "hit_points": 55
+      },
+      {
+        "name": "Aakaash",
+        "hit_points": 55
+      },
+      {
+        "name": "Aakaash",
+        "hit_points": 55
+      },
+      {
+        "name": "Aakaash",
+        "hit_points": 55
+      }
+    ],
+    "id": 1,
+    "name": "Encounter 1",
+    "description": ""
+  }
+]
