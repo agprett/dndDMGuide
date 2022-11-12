@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, config
+from flask import Flask, render_template, request
 from flask_cors import CORS
 import requests, json
 from controller import *
@@ -29,7 +29,6 @@ def apiEncounters():
     return encountersData
   
   if request.method == 'POST':
-    print(type(encountersData[len(encountersData) - 1]['id']))
     # encounterId = encountersData[len(encountersData) - 1].id or 1
     encounterId = 2
     newEncounter = {}

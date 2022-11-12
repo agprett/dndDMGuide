@@ -5,7 +5,7 @@ const adjustHealth = (id, type) => {
 
   if(type === 'plus'){
     input.value = +input.value + 1
-  } else if(type === 'minus'){
+  } else if(type === 'minus' && +input.value > 0){
     input.value = +input.value - 1
   }
 }
@@ -36,7 +36,6 @@ const monsterTrackerCreator = (data) => {
     axios.get(`https://www.dnd5eapi.co${monster.url}`)
     .then(res => {
       const {data: apiMonsterInfo} = res
-      console.log(apiMonsterInfo)
 
       const monsterSpecs = document.createElement('div')
       monsterSpecs.classList.add('monster-specs')
@@ -76,12 +75,12 @@ const monsterTrackerCreator = (data) => {
       const monsterMainSkills = document.createElement('div')
       monsterMainSkills.classList.add('monster-main-skills')
 
-      monsterMainSkills.innerHTML = `<p class="monster-main-skill">Str: ${apiMonsterInfo.strength} (${Math.floor((apiMonsterInfo.strength - 10) / 2)})</p>
-        <p class="monster-main-skill">Dex: ${apiMonsterInfo.dexterity} (${Math.floor((apiMonsterInfo.dexterity - 10) / 2)})</p>
-        <p class="monster-main-skill">Con: ${apiMonsterInfo.constitution} (${Math.floor((apiMonsterInfo.constitution - 10) / 2)})</p>
-        <p class="monster-main-skill">Int: ${apiMonsterInfo.intelligence} (${Math.floor((apiMonsterInfo.intelligence - 10) / 2)})</p>
-        <p class="monster-main-skill">Wis: ${apiMonsterInfo.wisdom} (${Math.floor((apiMonsterInfo.wisdom - 10) / 2)})</p>
-        <p class="monster-main-skill">Cha: ${apiMonsterInfo.charisma} (${Math.floor((apiMonsterInfo.charisma - 10) / 2)})</p>
+      monsterMainSkills.innerHTML = `<p class="monster-main-skill-left">Str: ${apiMonsterInfo.strength} (${Math.floor((apiMonsterInfo.strength - 10) / 2)})</p>
+        <p class="monster-main-skill-center">Dex: ${apiMonsterInfo.dexterity} (${Math.floor((apiMonsterInfo.dexterity - 10) / 2)})</p>
+        <p class="monster-main-skill-right">Con: ${apiMonsterInfo.constitution} (${Math.floor((apiMonsterInfo.constitution - 10) / 2)})</p>
+        <p class="monster-main-skill-left">Int: ${apiMonsterInfo.intelligence} (${Math.floor((apiMonsterInfo.intelligence - 10) / 2)})</p>
+        <p class="monster-main-skill-center">Wis: ${apiMonsterInfo.wisdom} (${Math.floor((apiMonsterInfo.wisdom - 10) / 2)})</p>
+        <p class="monster-main-skill-right">Cha: ${apiMonsterInfo.charisma} (${Math.floor((apiMonsterInfo.charisma - 10) / 2)})</p>
       `
       
       const monsterSubSkills = document.createElement('div')
@@ -234,9 +233,9 @@ const displayEncounters = (encounters) => {
 
     allEncountersDisplay.appendChild(encounterDiv)
 
-    if(i === 0){
-      viewEncounter(encounter)
-    }
+    // if(i === 0){
+    //   viewEncounter(encounter)
+    // }
   });
 }
 

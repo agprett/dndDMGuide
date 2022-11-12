@@ -155,6 +155,21 @@ main {
   flex-wrap: wrap;
 }
 
+.monster-main-skill-left {
+  width: 33%;
+  text-align: left;
+}
+
+.monster-main-skill-center {
+  width: 33%;
+  text-align: center;
+}
+
+.monster-main-skill-right {
+  width: 33%;
+  text-align: right;
+}
+
 .monster-sub-skills {
   min-height: 85px;
   padding: 10px 0;
