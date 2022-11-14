@@ -19,33 +19,41 @@
     </header>
 
     <main>
-      
-      <section id="encounter-filter">
-        
-      </section>
-      
-      <section id="displayed">
-        <form name="search-monsters" id="search-monsters">
-          <input placeholder="Search name" id="search-monsters-input"/>
-          <button
-            type="submit"
-          >Search</button>
-        </form>
 
-        <section id="displayed-monsters">
-          <div class="monster">
-            <img class="monster-img"/>
-            <p>Monster Name</p>
+      <section id="selection-display">
+        <div id="selection-buttons-div">
+          <button id="selection-button-monsters" class="selected-display-button selection-buttons">Monsters</button>
+          <button id="selection-button-players" class="selection-buttons">Players</button>
+        </div>
+        
+        <section class="encounter-selection displayed" id="monsters-selection">
+          <form name="search-monsters" id="search-monsters">
+            <input placeholder="Search name" id="search-monsters-input"/>
             <button
-              class="add-monster"
-            >Add</button>
-          </div>
+              type="submit"
+            >Search</button>
+          </form>
+  
+          <section id="displayed-monsters"></section>
         </section>
+
+                
+        <section class="encounter-selection" id="player-selection">
+          <h2>Players</h2>
+
+          <section id="displayed-players"></section>
+        </section>
+
       </section>
-      
-      <section id="added-enemies">
+
+      <section id="added-characters">
         <h2>Encounter:</h2>
-        <section id="added-display"></section>
+        <p>Monsters</p>
+        <section id="added-display-monsters" class="added-display"></section>
+        
+        <p>Players</p>
+        <section id="added-display-players" class="added-display"></section>
+
         <div id="encounter-builder-buttons-div">
           <button class="encounter-builder-buttons" id="create-encounter-btn">Create Encounter</button>
           <a class="encounter-builder-buttons" href="/encounters">Cancel Creation</a>

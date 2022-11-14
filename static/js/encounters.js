@@ -10,9 +10,16 @@ const adjustHealth = (id, type) => {
   }
 }
 
+const removeMonster = (id) => {
+  const removedMonster = document.getElementById(id)
+
+  removedMonster.remove()
+}
+
 const createMonsterCards = (monster, apiMonsterInfo, i) => {
   const monsterDiv = document.createElement('div')
   monsterDiv.classList.add('tracker')
+  monsterDiv.setAttribute('id', `${apiMonsterInfo.name}-${i}`)
   
   monsterDiv.innerHTML = `<h2>${monster.name}-${i}</h2>
   <h3 class="tracker-health">Health: </h3>
@@ -20,7 +27,8 @@ const createMonsterCards = (monster, apiMonsterInfo, i) => {
   <input id="${apiMonsterInfo.index}-${i}" class="tracker-input" value="${apiMonsterInfo.hit_points}" min="0"/>
   <button onclick="adjustHealth('${apiMonsterInfo.index + '-' + i}', 'plus')">+</button>
   <p>Initiative:</p>
-  <input />`
+  <input class='tracker-initiative'/>
+  <button onclick="removeMonster('${apiMonsterInfo.name}-${i}')">Remove</button>`
 
   return monsterDiv
 }
@@ -111,7 +119,7 @@ const monsterTrackerCreator = (data) => {
       monsterActions.innerHTML = `<h3>Actions</h3>
         <div>
           Action and info
-          </div>
+        </div>
       `
       
       const monsterLegendaryActions = document.createElement('div')
@@ -148,7 +156,9 @@ const monsterTrackerCreator = (data) => {
       addMonsterBtn.textContent = '+'
 
       addMonsterBtn.onclick = () => {
-        let addedMonster = createMonsterCards(monster, apiMonsterInfo, trackerDisplay.childElementCount)
+        monster.amount++
+        
+        let addedMonster = createMonsterCards(monster, apiMonsterInfo, monster.amount)
 
         trackerDisplay.insertBefore(addedMonster, trackerDisplay.lastChild)
       }
@@ -174,7 +184,7 @@ const createPlayerCard = (player, i) => {
   <input id="${player.name}-${i}" class="tracker-input" value="${player.hit_points}" min="0"/>
   <button onclick="adjustHealth('${player.name + '-' + i}', 'plus')">+</button>
   <p>Initiative:</p>
-  <input />`
+  <input class='tracker-initiative'/>`
 
   return playerDiv
 }
@@ -192,13 +202,20 @@ const playerTrackerCreator = (players) => {
   return playerTracker
 }
 
-const viewEncounter = (encounter) => {
-  displayedEncounter.innerHTML = ''
+const deleteEncounter = (index) => {
+  axios.delete(`/api/encounters?index=${index}`)
+    .then(res => {
+      alert(res.data)
+      getEncounters()
+    })
+}
 
+const viewEncounter = (encounter, index) => {
   displayedEncounter.innerHTML = `
     <div id='viewed-encounter-name-stuff'>
       <input id="encounter-name" placeholder="${encounter.name}"/>
       <button>Update</button>
+      <button onclick='deleteEncounter(${index})'>Delete</button>
     </div>
   `
 
@@ -220,14 +237,26 @@ const displayEncounters = (encounters) => {
     const encounterDiv = document.createElement('div')
     encounterDiv.classList.add('encounter')
 
+    let monsterList = 'No monsters added'
+
+    if(encounter.monsters[0]) {
+      monsterList = encounter.monsters[0].name
+
+      if(encounter.monsters[1]) {
+        monsterList += `, ${encounter.monsters[1].name}`
+      }
+    }
+
     encounterDiv.innerHTML = `
       <h2>${encounter.name}</h2>
-      <p>${encounter.monsters[0].name}, ${encounter.monsters[1].name}</p>
+      <p>${monsterList}</p>
     `
+
+    displayedEncounter.innerHTML = ''
 
     const viewButton = document.createElement('button')
     viewButton.textContent = 'View'
-    viewButton.addEventListener('click', () => viewEncounter(encounter))
+    viewButton.addEventListener('click', () => viewEncounter(encounter, i))
 
     encounterDiv.appendChild(viewButton)
 

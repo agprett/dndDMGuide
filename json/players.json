@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Aakaash",
+    "hit_points": 55
+  },
+  {
+    "id": 2,
+    "name": "Lyra",
+    "hit_points": 55
+  },
+  {
+    "id": 3,
+    "name": "Daemon",
+    "hit_points": 67
+  },
+  {
+    "id": 4,
+    "name": "Leana",
+    "hit_points": 55
+  },
+  {
+    "id": 5,
+    "name": "Reginald",
+    "hit_points": 224
+  }
+]

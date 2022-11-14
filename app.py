@@ -1,10 +1,6 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
 import requests, json
-from controller import *
-
-encountersRaw = open('./json/encounters.json')
-encountersData = json.load(encountersRaw)
 
 app = Flask(__name__)
 CORS(app)
@@ -23,29 +19,82 @@ def encounters():
 def encountersBuilder():
   return render_template('encounter-builder.html')
 
-@app.route('/api/encounters', methods=['GET', 'POST'])
+@app.route('/api/encounters', methods=['GET', 'POST', 'DELETE'])
 def apiEncounters():
   if request.method == 'GET':
+    encountersRaw = open('./json/encounters.json')
+    encountersData = json.load(encountersRaw)
+
+    encountersRaw.close()
+
     return encountersData
   
   if request.method == 'POST':
-    # encounterId = encountersData[len(encountersData) - 1].id or 1
-    encounterId = 2
+    encountersRaw = open('./json/encounters.json', 'r+')
+    encountersData = json.load(encountersRaw)
+
+    encounterId = encountersData[len(encountersData) - 1]['id'] + 1 or 1
     newEncounter = {}
 
-    newEncounter['name'] = f'Encounter {encounterId}'
-    newEncounter['monsters'] = request.json.get('monsters')
-    newEncounter['players'] = encountersData[0]['players']
     newEncounter['id'] = encounterId
+    newEncounter['name'] = f'Encounter {encounterId}'
     newEncounter['description'] = ''
-
-    encounterId += 1
+    newEncounter['monsters'] = request.json.get('monsters')
+    newEncounter['players'] = request.json.get('players')
 
     encountersData.append(newEncounter)
 
-    addEncounter(encountersData, './json/encounters.json')
+    encountersRaw.seek(0)
+
+    json.dump(encountersData, encountersRaw, indent = 2)
     
+    encountersRaw.close()
+
     return 'Encounter was created'
+
+  if request.method == 'DELETE':
+    encountersRaw = open('./json/encounters.json', 'r')
+    encountersData = json.load(encountersRaw)
+
+    del encountersData[int(request.args.get('index'))]
+
+    encountersRaw.close()
+
+    with open('./json/encounters.json', 'w') as file:
+      json.dump(encountersData, file, indent = 2)
+
+    return 'Encounter deleted'
+
+@app.route('/api/players', methods=['GET', 'POST'])
+def apiPlayers():
+  if request.method == 'GET':
+    playersRaw = open('./json/players.json')
+    playersData = json.load(playersRaw)
+
+    playersRaw.close()
+
+    return playersData
+
+  if request.method == 'POST':
+    playersRaw = open('./json/players.json', 'r+')
+    playersData = json.load(playersRaw)
+
+    playerId = playersData[len(playersData) - 1]['id'] + 1 or 1
+    newPlayer = {}
+
+    newPlayer['id'] = playerId
+    newPlayer['name'] = request.json.get('name')
+    newPlayer['hit_points'] = request.json.get('hit_points')
+
+    playersData.append(newPlayer)
+
+    playersRaw.seek(0)
+
+    json.dump(playersData, playersRaw, indent = 2)
+    
+    playersRaw.close()
+
+    return 'Player was created'
 
 @app.route('/api/monsters', methods=['GET'])
 def apiMonster():
@@ -54,5 +103,3 @@ def apiMonster():
       return monstersData
     else:
       return 'Unable to get monsters'
-
-encountersRaw.close()

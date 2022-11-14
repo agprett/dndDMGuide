@@ -1,5 +1,8 @@
 [
   {
+    "id": 1,
+    "name": "Encounter 1",
+    "description": "",
     "monsters": [
       {
         "name": "Acolyte",
@@ -28,10 +31,11 @@
       {
         "name": "Leana",
         "hit_points": 55
+      },
+      {
+        "name": "Reginald",
+        "hit_points": 224
       }
-    ],
-    "id": 1,
-    "name": "Encounter 1",
-    "description": ""
+    ]
   }
 ]

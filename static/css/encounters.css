@@ -196,7 +196,7 @@ main {
 }
 
 .tracker {
-  height: 125px;
+  height: 150px;
   width: 150px;
   padding: 5px;
   margin: 5px;
@@ -215,6 +215,11 @@ main {
 
 .tracker-input {
   width: 40%;
+  text-align: center;
+}
+
+.tracker-initiative {
+  width: 80%;
   text-align: center;
 }
 

@@ -24,16 +24,39 @@ main {
   align-items: center;
 }
 
-#encounter-filter {
+#selection-display {
   height: 100%;
-  width: 20%;
-  background-color: red;
+  width: 65%;
+  background-color: yellowgreen;
 }
 
-#displayed {
-  height: 100%;
-  width: 50%;
+#selection-buttons-div {
+  height: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#selection-button-monsters {
+  border-radius: 10px 0 0 10px;
+}
+
+#selection-button-players {
+  border-radius: 0 10px 10px 0;
+}
+
+.selected-display-button {
+  background-color: lightgray;
+}
+
+.encounter-selection {
+  height: 93%;
+  width: 100%;
   background-color: blue;
+  display: none;
+}
+
+.displayed {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,9 +97,40 @@ main {
   background-color: pink;
 }
 
-#added-enemies {
+#displayed-players {
+  width: 95%;
+  height: 80%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow: auto;
+  background-color: green;
+}
+
+.player {
+  height: 100px;
+  width: 45%;
+  margin: 10px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: orange;
+}
+
+#new-player-name {
+  width: 40%;
+}
+
+#new-player-hp {
+  width: 30%;
+  text-align: right;
+}
+
+#added-characters {
   height: 100%;
-  width: 25%;
+  width: 30%;
   padding: 10px 0;
   display: flex;
   flex-direction: column;
@@ -85,9 +139,9 @@ main {
   background-color: purple;
 }
 
-#added-display {
+.added-display {
   width: 100%;
-  height: 85%;
+  height: 40%;
   background-color: aquamarine;
   display: flex;
   flex-direction: column;
@@ -95,7 +149,7 @@ main {
   overflow: auto;
 }
 
-.added-monster {
+.added {
   min-height: 30px;
   width: 90%;
   padding: 0px 7px;
