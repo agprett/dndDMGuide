@@ -1,7 +1,84 @@
 const displayedEncounter = document.getElementById('displayed-encounter')
 
+class Initiative {
+  constructor(){
+    this.turnOrder = []
+  }
+
+  resetCharacters() {
+    this.encounterCharacters = []
+    this.turnOrder = []
+    this.position = 0
+  }
+
+  addCharacter(id) {
+    this.encounterCharacters.push(id)
+  }
+
+  orderTurns() {
+    let activeTurn = document.querySelectorAll('.turn')
+    
+    if(activeTurn){
+      activeTurn.forEach(ele => {
+        ele.classList.remove('turn')
+      })
+      this.position = 0
+      this.turnOrder = []
+    }
+
+    this.encounterCharacters.forEach(character => {
+      const rolledInit = +document.getElementById(`${character}-initiative`).value
+
+      if(rolledInit){
+        this.turnOrder.push({id: character, initiative: rolledInit})
+      }
+    })
+
+    if(this.turnOrder.length < 1){
+      alert('Please add an initiative to at least one character.')
+      return
+    }
+
+    this.turnOrder.sort((a, b) => {
+      return b.initiative - a.initiative
+    })
+
+    document.getElementById(this.turnOrder[this.position].id).classList.toggle('turn')
+  }
+
+  changeTurn() {
+    document.getElementById(this.turnOrder[this.position].id).classList.toggle('turn')
+
+    if(this.position + 1 >= this.turnOrder.length){
+      this.position = 0
+    } else {
+      this.position++
+    }
+
+    document.getElementById(this.turnOrder[this.position].id).classList.toggle('turn')
+  }
+  
+  removeCharacter(id) {
+    let index = this.encounterCharacters.indexOf(id)
+
+    this.encounterCharacters.splice(index, 1)
+
+    index = this.turnOrder.findIndex(turn => turn.id === id)
+
+    if(index !== -1){
+      this.turnOrder.splice(index, 1)
+    }
+    
+    if(this.position === index){
+      document.getElementById(this.turnOrder[this.position].id).classList.toggle('turn')
+    }
+  }
+}
+
+let encounterInitiative = new Initiative()
+
 const adjustHealth = (id, type) => {
-  const input = document.querySelector(`#${id}`)
+  const input = document.querySelector(`#${id}-hp`)
 
   if(type === 'plus'){
     input.value = +input.value + 1
@@ -13,22 +90,26 @@ const adjustHealth = (id, type) => {
 const removeMonster = (id) => {
   const removedMonster = document.getElementById(id)
 
+  encounterInitiative.removeCharacter(id)
+
   removedMonster.remove()
 }
 
 const createMonsterCards = (monster, apiMonsterInfo, i) => {
   const monsterDiv = document.createElement('div')
   monsterDiv.classList.add('tracker')
-  monsterDiv.setAttribute('id', `${apiMonsterInfo.name}-${i}`)
+  monsterDiv.setAttribute('id', `${apiMonsterInfo.index}-${i}`)
   
   monsterDiv.innerHTML = `<h2>${monster.name}-${i}</h2>
   <h3 class="tracker-health">Health: </h3>
   <button onclick="adjustHealth('${apiMonsterInfo.index + '-' + i}', 'minus')">-</button>
-  <input id="${apiMonsterInfo.index}-${i}" class="tracker-input" value="${apiMonsterInfo.hit_points}" min="0"/>
+  <input id="${apiMonsterInfo.index}-${i}-hp" class="tracker-input" value="${apiMonsterInfo.hit_points}" min="0"/>
   <button onclick="adjustHealth('${apiMonsterInfo.index + '-' + i}', 'plus')">+</button>
   <p>Initiative:</p>
-  <input class='tracker-initiative'/>
-  <button onclick="removeMonster('${apiMonsterInfo.name}-${i}')">Remove</button>`
+  <input id='${apiMonsterInfo.index}-${i}-initiative' class='tracker-initiative'/>
+  <button onclick="removeMonster('${apiMonsterInfo.index}-${i}')">Remove</button>`
+
+  encounterInitiative.addCharacter(`${apiMonsterInfo.index}-${i}`)
 
   return monsterDiv
 }
@@ -177,14 +258,17 @@ const monsterTrackerCreator = (data) => {
 const createPlayerCard = (player, i) => {
   const playerDiv = document.createElement('div')
   playerDiv.classList.add('tracker')
+  playerDiv.setAttribute('id', `${player.name}-${i}`)
   
   playerDiv.innerHTML = `<h2>${player.name}</h2>
   <h3 class="tracker-health">Health: </h3>
   <button onclick="adjustHealth('${player.name + '-' + i}', 'minus')">-</button>
-  <input id="${player.name}-${i}" class="tracker-input" value="${player.hit_points}" min="0"/>
+  <input id="${player.name}-${i}-hp" class="tracker-input" value="${player.hit_points}" min="0"/>
   <button onclick="adjustHealth('${player.name + '-' + i}', 'plus')">+</button>
   <p>Initiative:</p>
-  <input class='tracker-initiative'/>`
+  <input id="${player.name}-${i}-initiative" class='tracker-initiative'/>`
+
+  encounterInitiative.addCharacter(`${player.name}-${i}`)
 
   return playerDiv
 }
@@ -211,11 +295,14 @@ const deleteEncounter = (index) => {
 }
 
 const viewEncounter = (encounter, index) => {
+  encounterInitiative.resetCharacters()
+  
   displayedEncounter.innerHTML = `
     <div id='viewed-encounter-name-stuff'>
-      <input id="encounter-name" placeholder="${encounter.name}"/>
-      <button>Update</button>
-      <button onclick='deleteEncounter(${index})'>Delete</button>
+      <h2 id="encounter-name">${encounter.name}</h2>
+      <button onclick='encounterInitiative.orderTurns()'>Update Initiative</button>
+      <button onclick='encounterInitiative.changeTurn()'>Next Turn</button>
+      <button onclick='deleteEncounter(${index})'>Delete Encounter</button>
     </div>
   `
 

@@ -23,5 +23,10 @@
     "id": 5,
     "name": "Reginald",
     "hit_points": 224
+  },
+  {
+    "id": 6,
+    "name": "Sami",
+    "hit_points": 100
   }
 ]

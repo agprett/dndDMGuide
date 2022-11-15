@@ -208,6 +208,11 @@ main {
   text-align: center;
 }
 
+.turn {
+  border: 7px solid purple;
+  box-shadow: inset 0 0 25px black;
+}
+
 .tracker-health {
   width: 90%;
   text-align: center;
