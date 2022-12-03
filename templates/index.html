@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DnD Encounter Builder</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="{{url_for('static', filename='images/logo.png')}}">
+    <title>DnD Encounter Builder</title>
   </head>
   <body>
     <header id="header">
-      <h2>DnD Home</h2>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/encounters">Encounters</a>
-      </nav>
+      <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo" class="nav-logo">
+      <a href="/">
+        <h3>DragonMasters</h3>
+      </a>
+      <a href="/encounters">Encounter</a>
     </header>
+    
+    <div id="opener">
+      <h2 class="opac-box">DragonMasters</h2>
+      <p class="opac-box">A guide and help for all dungeon masters</p>
+      <img src="{{url_for('static', filename='images/boss-battle.jpeg')}}" alt="boss-battle-image" id="opener-img">
+    </div>
 
     <br/>
     <br/>

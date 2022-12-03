@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DnD Encounters</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/encounters.css">
+    <link rel="icon" href="{{url_for('static', filename='images/logo.png')}}">
+    <title>DnD Encounters</title>
   </head>
   <body>
     <header id="header">
-      <h2>DnD Encounters</h2>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/encounters">Encounters</a>
-      </nav>
+      <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo" class="nav-logo">
+      <a href="/">
+        <h3>DragonMasters</h3>
+      </a>
+      <a href="/encounters">Encounter</a>
     </header>
 
     <main>
@@ -26,7 +27,7 @@
         <section id="all-encounters"></section>
       </section>
 
-      <section id="displayed-encounter"></section>
+      <section id="displayed-encounter"><p>Select an encounter</p></section>
     </main>
   
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

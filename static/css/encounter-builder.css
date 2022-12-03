@@ -1,24 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=MedievalSharp|Josefin+Sans');
+
 body {
   height: 100vh;
   width: 100vw;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-#header {
-  height: 65px;
-  width: 100%;
-  position: fixed;
-  top: 0;
+header {
+  height: 100px;
+  padding: 0 15px;
+  font-size: 22px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  background-color: red;
+  background-color: #264C5E;
+  font-family: 'MedievalSharp', sans-serif;
+}
+
+.nav-logo {
+  height: 85px;
+  margin-right: 10px;
+}
+
+a {
+  height: 100%;
+  padding: 0 25px;
+  text-align: center;
+  color: #CEC2AE;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+header a:hover {
+  background-color: #E94445;
 }
 
 main {
   height: 100%;
   width: 100%;
-  padding: 70px 0 15px;
+  padding: 15px 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

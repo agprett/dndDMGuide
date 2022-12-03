@@ -1,11 +1,63 @@
-#header {
-  height: 65px;
+@import url('https://fonts.googleapis.com/css?family=MedievalSharp|Josefin+Sans');
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+header {
+  height: 100px;
+  padding: 0 15px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  background-color: #264C5E;
+  font-family: 'MedievalSharp', sans-serif;
+}
+
+.nav-logo {
+  height: 85px;
+  margin-right: 10px;
+}
+
+a {
+  height: 100%;
+  padding: 0 25px;
+  text-align: center;
+  color: #CEC2AE;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+header a:hover {
+  background-color: #E94445;
+}
+
+#opener {
+  position: relative;
+  height: 70%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: red;
+  font-size: 2em;
+  font-family: 'MedievalSharp', sans-serif;
+}
+
+.opac-box {
+  padding: 15px 75px;
+  z-index: 2;
+}
+
+#opener-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  z-index: 1;
 }
 
 #added-text {

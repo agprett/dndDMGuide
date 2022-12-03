@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/encounter-builder.css">
+    <link rel="icon" href="{{url_for('static', filename='images/logo.png')}}">
     <title>DND N Stuff</title>
   </head>
   <body>
-
     <header id="header">
-      <h2>DnD Encounter Builder</h2>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/encounters">Encounters</a>
-      </nav>
+      <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo" class="nav-logo">
+      <a href="/">
+        <h3>DragonMasters</h3>
+      </a>
+      <a href="/encounters">Encounter</a>
     </header>
 
     <main>

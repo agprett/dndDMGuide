@@ -9,7 +9,7 @@ monstersData = requests.get('https://www.dnd5eapi.co/api/monsters').json().get('
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+  return render_template('index.html')
 
 @app.route('/encounters')
 def encounters():
